@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('sessions', function (Blueprint $table) {
             $table->id();
+            $table->string('slug', 100);
             $table->string('title');
             $table->string('full_name');
             $table->text('description');

@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 
 class Session extends Controller
 {
+
    public function index() {
 
    $filter = QueryBuilder::for(Sessions::class) 
@@ -16,4 +17,9 @@ class Session extends Controller
 
       return $filter;
    }
+
+   public function show($id) {
+      return Sessions::where('slug', $id)->first();
+   }
+
 }

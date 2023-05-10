@@ -20,3 +20,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('/session',[ Session::class, 'index']);
+
+Route::get('/session/{id}',[ Session::class, 'show']);
