@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string('title');
             $table->string('full_name');
             $table->text('description');
+            $table->string('room', 50);
+            $table->string('session_format', 50);
             $table->time('start_time', $precision = 0);
             $table->time('end_time', $precision = 0);
             $table->date('session_date');
