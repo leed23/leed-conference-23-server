@@ -11,13 +11,14 @@ use Illuminate\Http\Request;
 class Session extends Controller
 {
 
-   public function index() {
+   public function index(Request $request) {
 
       $filter = QueryBuilder::for(Sessions::class)
          ->with('themes')
          ->AllowedFilters([
             AllowedFilter::exact('themes', 'themes.theme'),
             AllowedFilter::exact('session_format'),
+            AllowedFilter::scope('start_time'),
          ])
          ->get();
 
