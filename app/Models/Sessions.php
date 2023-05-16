@@ -20,6 +20,7 @@ class Sessions extends Model
     public function toSearchableArray() {
         return [
             'title' => $this->title,
+            'full_name' => $this->full_name,
         ];
     }
 
