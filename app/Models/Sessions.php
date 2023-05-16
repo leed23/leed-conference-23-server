@@ -14,9 +14,20 @@ class Sessions extends Model
 {
     use HasFactory;
 
+    // public function scopeBetween(Builder $query, $startTime, $endTime): Builder {
+    //     return $query->whereBetween('start_time', [
+    //         Carbon::parse($startTime)->toDateTimeString(),
+    //         Carbon::parse($endTime)->toDateTimeString(),
+    //     ])
+    //     ->whereBetween('end_time', [
+    //         Carbon::parse($startTime)->toDateTimeString(),
+    //         Carbon::parse($endTime)->toDateTimeString(),
+    //     ]);
+    // }
 
-    public function scopeStartTime(Builder $query, $date): Builder {
-    return $query->where('start_time', '>=', Carbon::parse($date));
+    public function scopeBetween(Builder $query, $startTime, $endTime): Builder {
+        return $query->where('start_time', '<=', Carbon::parse($endTime))
+        ->where('end_time', '>=', Carbon::parse($startTime));
     }
 
     public function themes(): HasMany {

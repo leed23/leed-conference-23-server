@@ -18,13 +18,12 @@ class Session extends Controller
          ->AllowedFilters([
             AllowedFilter::exact('themes', 'themes.theme'),
             AllowedFilter::exact('session_format'),
-            AllowedFilter::scope('start_time'),
+            AllowedFilter::scope('between'),
          ])
          ->get();
 
       return $filter;
    }
-
 
    public function show($id) {
       return Sessions::where('slug', $id)->first();
