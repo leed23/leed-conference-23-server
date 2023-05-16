@@ -18,7 +18,7 @@ class Session extends Controller
          ->AllowedFilters([
             AllowedFilter::exact('themes', 'themes.theme'),
             AllowedFilter::exact('session_format'),
-            AllowedFilter::scope('between'),
+            AllowedFilter::scope('time_range'),
          ])
          ->get();
 

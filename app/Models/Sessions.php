@@ -25,7 +25,7 @@ class Sessions extends Model
     //     ]);
     // }
 
-    public function scopeBetween(Builder $query, $startTime, $endTime): Builder {
+    public function scopeTimeRange(Builder $query, $startTime, $endTime): Builder {
         return $query->where('start_time', '<=', Carbon::parse($endTime))
         ->where('end_time', '>=', Carbon::parse($startTime));
     }
