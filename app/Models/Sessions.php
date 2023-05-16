@@ -6,24 +6,22 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Laravel\Scout\Searchable;
 use Carbon\Carbon;
 
 
-
 class Sessions extends Model
+
 {
     use HasFactory;
 
-    // public function scopeBetween(Builder $query, $startTime, $endTime): Builder {
-    //     return $query->whereBetween('start_time', [
-    //         Carbon::parse($startTime)->toDateTimeString(),
-    //         Carbon::parse($endTime)->toDateTimeString(),
-    //     ])
-    //     ->whereBetween('end_time', [
-    //         Carbon::parse($startTime)->toDateTimeString(),
-    //         Carbon::parse($endTime)->toDateTimeString(),
-    //     ]);
-    // }
+    use Searchable;
+
+    public function toSearchableArray() {
+        return [
+            'title' => $this->title,
+        ];
+    }
 
     public function scopeTimeRange(Builder $query, $startTime, $endTime): Builder {
         return $query->where('start_time', '<=', Carbon::parse($endTime))

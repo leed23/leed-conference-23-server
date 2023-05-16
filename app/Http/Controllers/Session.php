@@ -29,4 +29,10 @@ class Session extends Controller
       return Sessions::where('slug', $id)->first();
    }
 
+   public function search($id) {
+      $sessionSearch = Sessions::search($id)->take(11)->get();
+      
+      return $sessionSearch;
+  }
+
 }
