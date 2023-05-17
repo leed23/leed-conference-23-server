@@ -30,7 +30,7 @@ class Session extends Controller
    }
 
    public function search($id) {
-      $sessionSearch = Sessions::search($id)->take(11)->get();
+      $sessionSearch = Sessions::search($id)->get();
       
       return $sessionSearch;
   }
