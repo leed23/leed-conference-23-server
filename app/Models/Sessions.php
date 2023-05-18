@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany; 
 use Laravel\Scout\Searchable;
 use Carbon\Carbon;
 
@@ -31,5 +32,9 @@ class Sessions extends Model
 
     public function themes(): HasMany {
         return $this->hasMany(Themes::class);
+    }
+    
+    public function facilitators(): BelongsToMany {
+        return $this->belongsToMany(Facilitators::class, 'sessions_facilitators');
     }
 }

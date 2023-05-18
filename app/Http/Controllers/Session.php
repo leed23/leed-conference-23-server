@@ -5,6 +5,7 @@ use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
 
 use App\Models\Sessions;
+use App\Models\Facilitators;
 
 use Illuminate\Http\Request;
 
@@ -14,9 +15,10 @@ class Session extends Controller
    public function index(Request $request) {
 
       $filter = QueryBuilder::for(Sessions::class)
-         ->with('themes')
+         ->with('themes', 'facilitators')
          ->AllowedFilters([
             AllowedFilter::exact('themes', 'themes.theme'),
+            AllowedFilter::exact('facilitators', 'facilitators.name'),
             AllowedFilter::exact('session_format'),
             AllowedFilter::scope('time_range'),
          ])
