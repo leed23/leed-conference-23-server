@@ -22,6 +22,7 @@ class Session extends Controller
             AllowedFilter::exact('session_format'),
             AllowedFilter::scope('time_range'),
          ])
+         ->orderBy('start_time')
          ->get();
 
       return $filter;
