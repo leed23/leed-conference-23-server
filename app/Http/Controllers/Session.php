@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
-
 use App\Models\Sessions;
 use App\Models\Facilitators;
+use ProtoneMedia\LaravelCrossEloquentSearch\Search;
+
 
 use Illuminate\Http\Request;
 
@@ -32,10 +33,11 @@ class Session extends Controller
       return Sessions::where('slug', $id)->first();
    }
 
+   
    public function search($id) {
-      $sessionSearch = Sessions::search($id)->get();
-      
-      return $sessionSearch;
-  }
-
+      return Search::add(Sessions::with('facilitators'), ['title', 'full_name' ,'facilitators.name'])
+      ->beginWithWildcard()
+      ->orderBy('sessions.start_time')
+      ->get($id);
+   }
 }
