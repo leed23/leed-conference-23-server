@@ -23,6 +23,10 @@ class Sessions extends Model
     public function themes(): HasMany {
         return $this->hasMany(Themes::class);
     }
+
+    public function childsessions(): HasMany {
+        return $this->hasMany(ChildSessions::class);
+    }
     
     public function facilitators(): BelongsToMany {
         return $this->belongsToMany(Facilitators::class, 'sessions_facilitators');

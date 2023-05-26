@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('themes', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('sessions_id');
+            $table->unsignedBigInteger('child_sessions_id');
             $table->string('theme', 100);
             $table->timestamps();
 

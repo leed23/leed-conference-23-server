@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
 use App\Models\Sessions;
+use App\Models\ChildSessions;
 use App\Models\Facilitators;
 use ProtoneMedia\LaravelCrossEloquentSearch\Search;
 
@@ -16,10 +17,11 @@ class Session extends Controller
    public function index(Request $request) {
 
       $filter = QueryBuilder::for(Sessions::class)
-         ->with('themes', 'facilitators')
+         ->with('themes', 'facilitators', 'childsessions')
          ->AllowedFilters([
             AllowedFilter::exact('themes', 'themes.theme'),
             AllowedFilter::exact('facilitators', 'facilitators.name'),
+            AllowedFilter::exact('childsessions', 'childsessions.*'),
             AllowedFilter::exact('session_format'),
             AllowedFilter::scope('time_range'),
          ])
