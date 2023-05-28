@@ -17,9 +17,12 @@ class Session extends Controller
    public function index(Request $request) {
 
       $filter = QueryBuilder::for(Sessions::class)
-         ->with('childsessions')
+         ->with('childsessions', 'childsessions.themes', 'childsessions.facilitators')
+         ->allowedIncludes(['childsessions.themes', 'childsessions.facilitators'])
          ->AllowedFilters([
             AllowedFilter::exact('childsessions', 'childsessions.*'),
+            AllowedFilter::exact('childsessions.themes', 'childsessions.themes.*'),
+            AllowedFilter::exact('childsessions.facilitators', 'childsessions.facilitators.*'),
             AllowedFilter::exact('session_format'),
             AllowedFilter::scope('time_range')
          ])
