@@ -20,17 +20,15 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        Schema::create('sessions_facilitators', function (Blueprint $table) {
+        Schema::create('child_sessions_facilitators', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('sessions_id');
+            $table->unsignedBigInteger('child_sessions_id');
             $table->unsignedBigInteger('facilitators_id');
             $table->timestamps();
 
-            $table->unique(['sessions_id', 'facilitators_id']);
-
-            $table->foreign('sessions_id')
+            $table->foreign('child_sessions_id')
             ->references('id')
-            ->on('sessions')
+            ->on('child_sessions')
             ->delete('cascade')
             ->update('cascade');
 

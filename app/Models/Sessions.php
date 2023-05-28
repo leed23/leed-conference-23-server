@@ -27,8 +27,5 @@ class Sessions extends Model
     public function childsessions(): HasMany {
         return $this->hasMany(ChildSessions::class);
     }
-    
-    public function facilitators(): BelongsToMany {
-        return $this->belongsToMany(Facilitators::class, 'sessions_facilitators');
-    }
+        
 }

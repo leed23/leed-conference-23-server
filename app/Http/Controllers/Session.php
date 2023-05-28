@@ -17,13 +17,11 @@ class Session extends Controller
    public function index(Request $request) {
 
       $filter = QueryBuilder::for(Sessions::class)
-         ->with('themes', 'facilitators', 'childsessions')
+         ->with('childsessions')
          ->AllowedFilters([
-            AllowedFilter::exact('themes', 'themes.theme'),
-            AllowedFilter::exact('facilitators', 'facilitators.name'),
             AllowedFilter::exact('childsessions', 'childsessions.*'),
             AllowedFilter::exact('session_format'),
-            AllowedFilter::scope('time_range'),
+            AllowedFilter::scope('time_range')
          ])
          ->orderBy('start_time')
          ->get();
@@ -35,9 +33,8 @@ class Session extends Controller
       return Sessions::where('slug', $id)->first();
    }
 
-   
    public function search($id) {
-      return Search::add(Sessions::with('facilitators'), ['title', 'full_name' ,'facilitators.name'])
+      return Search::add(Sessions::with('facilitators'), ['title', 'full_name','facilitators.name'])
       ->beginWithWildcard()
       ->orderBy('sessions.start_time')
       ->get($id);

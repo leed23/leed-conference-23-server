@@ -13,14 +13,15 @@ return new class extends Migration
     {
         Schema::create('themes', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('sessions_id');
             $table->unsignedBigInteger('child_sessions_id');
-            $table->string('theme', 100);
+            $table->string('theme', 500);
             $table->timestamps();
 
-            $table->foreign('sessions_id')
+            $table->unique(['child_sessions_id', 'theme']);
+
+            $table->foreign('child_sessions_id')
             ->references('id')
-            ->on('sessions')
+            ->on('child_sessions')
             ->delete('cascade')
             ->update('cascade');
         });
