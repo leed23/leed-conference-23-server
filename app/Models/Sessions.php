@@ -27,5 +27,13 @@ class Sessions extends Model
     public function childsessions(): HasMany {
         return $this->hasMany(ChildSessions::class);
     }
+
+    public function scopeChildsessionFilter($query, $value)
+{
+    return $query->whereHas('childsessions', function ($query) use ($value) {
+        // Apply your filtering conditions for childsessions here
+        $query->where('some_column', $value);
+    });
+}
         
 }
