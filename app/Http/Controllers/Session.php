@@ -23,7 +23,7 @@ class Session extends Controller
             AllowedFilter::exact('childsessions', 'childsessions.*'),
             AllowedFilter::exact('childsessions.themes', 'childsessions.themes.*'),
             AllowedFilter::exact('childsessions.facilitators', 'childsessions.facilitators.*'),
-            AllowedFilter::exact('session_format'),
+            AllowedFilter::exact('session_type'),
             AllowedFilter::scope('time_range')
          ])
          ->orderBy('start_time')
@@ -37,7 +37,7 @@ class Session extends Controller
    }
 
    public function search($id) {
-      return Search::add(Sessions::with('facilitators'), ['title', 'full_name','facilitators.name'])
+      return Search::add(Sessions::with('childsessions'), ['childsessions.title', 'childsessions.full_name','childsessions.facilitators.name'])
       ->beginWithWildcard()
       ->orderBy('sessions.start_time')
       ->get($id);
