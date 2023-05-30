@@ -21,11 +21,11 @@ class Sessions extends Model
     }
 
     public function themes(): HasMany {
-        return $this->hasMany(Themes::class);
+        return $this->hasMany(Themes::class)->orderBy('theme', 'asc');
     }
 
     public function childsessions(): HasMany {
-        return $this->hasMany(ChildSessions::class);
+        return $this->hasMany(ChildSessions::class)->orderBy('title', 'asc');
     }
 
     public function scopeChildsessionFilter($query, $value)

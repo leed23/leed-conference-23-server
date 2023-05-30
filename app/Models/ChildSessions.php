@@ -16,6 +16,6 @@ class ChildSessions extends Model
     }
 
     public function facilitators(): BelongsToMany {
-        return $this->belongsToMany(Facilitators::class, 'child_sessions_facilitators');
+        return $this->belongsToMany(Facilitators::class, 'child_sessions_facilitators')->orderBy('name', 'asc');
     }
 }
