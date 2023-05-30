@@ -36,7 +36,7 @@ class Session extends Controller
 
    public function search($id) {
       return Search::add(Sessions::with('childsessions', 'childsessions.themes', 'childsessions.facilitators'), ['childsessions.title', 'childsessions.full_name','childsessions.facilitators.name'])
-      ->beginWithWildcard()
+      ->dontParseTerm()
       ->orderBy('sessions.start_time')
       ->get($id);
    }
