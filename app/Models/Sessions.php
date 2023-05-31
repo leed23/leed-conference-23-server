@@ -16,7 +16,7 @@ class Sessions extends Model
     use HasFactory;
 
     public function scopeTimeRange(Builder $query, $startTime, $endTime): Builder {
-        return $query->where('start_time', '<=', Carbon::parse($endTime))
+        return $query->where('start_time', '>=', Carbon::parse($startTime))
         ->where('end_time', '>=', Carbon::parse($startTime));
     }
 

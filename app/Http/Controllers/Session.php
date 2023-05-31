@@ -40,4 +40,13 @@ class Session extends Controller
       ->orderBy('sessions.start_time')
       ->get($id);
    }
+
+   public function update(Request $request, $id) {
+       $counter = Sessions::findOrFail($id);
+       $counter->fav += 1;
+       $counter->save();
+
+       return response()->json(['message' => 'Counter updated successfully']);
+   }
 }
+

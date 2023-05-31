@@ -24,3 +24,5 @@ Route::get('/session',[ Session::class, 'index']);
 Route::get('/session/{id}',[ Session::class, 'show']);
 
 Route::get('/search/{id}',[ Session::class, 'search']);
+
+Route::put('/update/{id}',[ Session::class, 'update']);
