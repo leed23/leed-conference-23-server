@@ -42,11 +42,18 @@ class Session extends Controller
    }
 
    public function update(Request $request, $id) {
-       $counter = Sessions::findOrFail($id);
-       $counter->fav += 1;
-       $counter->save();
 
-       return response()->json(['message' => 'Counter updated successfully']);
+      $fav = Sessions::findOrFail($id);
+ 
+      $fav->fav = $request->fav;
+
+      $fav->save();
+
+      //  $counter = Sessions::findOrFail($id);
+      //  $counter->fav += 1;
+      //  $counter->save();
+
+      //  return response()->json(['message' => 'Counter updated successfully']);
    }
 }
 
