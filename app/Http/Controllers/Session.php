@@ -25,6 +25,7 @@ class Session extends Controller
             AllowedFilter::scope('time_range')
          ])
          ->orderBy('start_time')
+         ->orderBy('code')
          ->get();
 
       return $filter;
@@ -35,7 +36,7 @@ class Session extends Controller
    }
 
    public function search($id) {
-      return Search::add(Sessions::with('childsessions', 'childsessions.themes', 'childsessions.facilitators'), ['childsessions.title', 'childsessions.full_name','childsessions.facilitators.name'])
+      return Search::add(Sessions::with('childsessions', 'childsessions.themes', 'childsessions.facilitators'), ['childsessions.title', 'childsessions.full_name', 'childsessions.surname' , 'childsessions.facilitators.name', 'childsessions.facilitators.surname'])
       ->dontParseTerm()
       ->orderBy('sessions.start_time')
       ->get($id);
